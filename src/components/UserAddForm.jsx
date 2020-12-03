@@ -12,35 +12,45 @@ class UserAddForm extends React.Component {
         this.state = {
             name: '',
             email: '',
-            isGoldClient: false
+            isGoldClient: false,
+            salary: '',
+            imgPath: ''
         };
     }
 
     // NU UITATI ca metodele apelate la declansarea unui event primesc automat ca parametru event-ul respectiv.
     updateName(event) {
         // Practic, in campul din state corespunzator se stocheaza valoarea introdusa de utilizator.
-        this.setState({name: event.target.value});
+        this.setState({ name: event.target.value });
     }
 
     updateEmail(event) {
-        this.setState({email: event.target.value});
+        this.setState({ email: event.target.value });
     }
 
-    updateIsGoldClient (event) {
+    updateSalary(event) {
+        this.setState({ salary: event.target.value });
+    }
+
+    updateImgPath(event) {
+        this.setState({ imgPath: event.target.value });
+    }
+
+    updateIsGoldClient(event) {
         // HINT: Daca nu sunteti siguri ce valoare are o anumita variabila, console.log-ati-o!
         // La checkboxuri event.target.value nu ar fi dat rezultatul dorit, avem nevoie de event.target.checked.
         console.log(event.target.checked);
         // ATENTIE! Niciodata sa includeti this.state in interiorul lui this.setState()
         // this.setState({isGoldClient: !this.state.isGoldClient}) NU FACETI ASTA!
         // REPET, NICIODATA NU INCLUDETI THIS.STATE IN THIS.SETSTATE !!!
-        this.setState({isGoldClient: event.target.checked});
+        this.setState({ isGoldClient: event.target.checked });
     }
 
     render() {
         // ATENTIE! Destructuring-ul se face inainte de return! Ne ajuta sa scriem mai putin cand apelam
         // submitAddForm mai jos!
-        const {name, email, isGoldClient} = this.state;
-        const {submitAddForm} = this.props;
+        const { name, email, isGoldClient, salary, imgPath } = this.state;
+        const { submitAddForm } = this.props;
 
         return (
             <form
@@ -54,7 +64,7 @@ class UserAddForm extends React.Component {
                 // state-ul din App.js! Cum? this e cheia! (SFAT: consultati teoria la partea asta)
                 // ALSO: functia submitAddForm va fi apelata doar la submit! (Din nou, teoria e importanta) Si
                 // pentru a folosi evenimentul de submit, trebuie pasat ca parametru!
-                onSubmit={(event) => submitAddForm(event, name, email, isGoldClient)}
+                onSubmit={(event) => submitAddForm(event, name, email, isGoldClient, salary, imgPath)}
             >
                 <h2>Adauga utilizatori:</h2>
                 {/* ATENTIE! In JSX, for este pentru structuri repetitive. Pentru for din HTML
@@ -81,7 +91,21 @@ class UserAddForm extends React.Component {
                     onChange={(event) => this.updateIsGoldClient(event)}
                 />
 
-                <input type="submit" value="Introdu utilizatorul"/>
+                <label htmlFor="salary">Salary:</label>
+                <input
+                    type="text"
+                    name="salary"
+                    onChange={(event) => this.updateSalary(event)}
+                />
+
+                <label htmlFor="imgPath">Link to the avarat image:</label>
+                <input
+                    type="text"
+                    name="imgPath"
+                    onChange={(event) => this.updateImgPath(event)}
+                />
+
+                <input type="submit" value="Introdu utilizatorul" />
             </form>
         )
     }

@@ -1,0 +1,117 @@
+[debug] [2020-12-03T15:29:22.679Z] ----------------------------------------------------------------------
+[debug] [2020-12-03T15:29:22.681Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Professional\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-12-03T15:29:22.681Z] CLI Version:   8.17.0
+[debug] [2020-12-03T15:29:22.681Z] Platform:      win32
+[debug] [2020-12-03T15:29:22.681Z] Node Version:  v14.15.1
+[debug] [2020-12-03T15:29:22.683Z] Time:          Thu Dec 03 2020 17:29:22 GMT+0200 (Eastern European Standard Time)
+[debug] [2020-12-03T15:29:22.683Z] ----------------------------------------------------------------------
+[debug] [2020-12-03T15:29:22.683Z] 
+[debug] [2020-12-03T15:29:22.689Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-12-03T15:29:22.689Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Code\ReactCourse\react-curs04
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2020-12-03T15:30:05.360Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-12-03T15:30:05.360Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-12-03T15:30:05.825Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Thu, 03 Dec 2020 15:30:05 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-12-03T15:30:05.835Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects  
+ {"projectId":"proiect5","name":"proiect5"}
+[debug] [2020-12-03T15:30:07.148Z] <<< HTTP RESPONSE 409 {"vary":"X-Origin, Referer, Origin,Accept-Encoding","content-type":"application/json; charset=UTF-8","date":"Thu, 03 Dec 2020 15:30:06 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=781","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-12-03T15:30:07.148Z] <<< HTTP RESPONSE BODY {"error":{"code":409,"message":"Requested entity already exists","status":"ALREADY_EXISTS"}}
+[debug] [2020-12-03T15:30:08.005Z] FirebaseError: HTTP Error: 409, Requested entity already exists
+    at module.exports (C:\Users\Professional\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:38:12)
+    at Request._callback (C:\Users\Professional\AppData\Roaming\npm\node_modules\firebase-tools\lib\api.js:41:35)
+    at Request.self.callback (C:\Users\Professional\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:185:22)
+    at Request.emit (events.js:315:20)
+    at Request.EventEmitter.emit (domain.js:486:12)
+    at Request.<anonymous> (C:\Users\Professional\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1154:10)
+    at Request.emit (events.js:315:20)
+    at Request.EventEmitter.emit (domain.js:486:12)
+    at IncomingMessage.<anonymous> (C:\Users\Professional\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1076:12)
+    at Object.onceWrapper (events.js:421:28)
+    at IncomingMessage.emit (events.js:327:22)
+    at IncomingMessage.EventEmitter.emit (domain.js:486:12)
+    at endReadableNT (_stream_readable.js:1327:12)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21)
+[error] 
+[error] Error: Failed to create project because there is already a project with ID proiect5. Please try again with a unique project ID.
+[debug] [2020-12-03T15:30:19.498Z] ----------------------------------------------------------------------
+[debug] [2020-12-03T15:30:19.500Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Professional\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-12-03T15:30:19.500Z] CLI Version:   8.17.0
+[debug] [2020-12-03T15:30:19.500Z] Platform:      win32
+[debug] [2020-12-03T15:30:19.501Z] Node Version:  v14.15.1
+[debug] [2020-12-03T15:30:19.502Z] Time:          Thu Dec 03 2020 17:30:19 GMT+0200 (Eastern European Standard Time)
+[debug] [2020-12-03T15:30:19.502Z] ----------------------------------------------------------------------
+[debug] [2020-12-03T15:30:19.502Z] 
+[debug] [2020-12-03T15:30:19.507Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-12-03T15:30:19.507Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Code\ReactCourse\react-curs04
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2020-12-03T15:30:40.248Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects  
+ {"projectId":"asdfghjkl5","name":"asdfghjkl5"}
+[debug] [2020-12-03T15:30:41.229Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 03 Dec 2020 15:30:41 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=784","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-12-03T15:30:41.232Z] > refreshing access token with scopes: []
+[debug] [2020-12-03T15:30:41.232Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-12-03T15:30:41.518Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Thu, 03 Dec 2020 15:30:41 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-12-03T15:30:41.523Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.6187821861783946122 [none]
+[debug] [2020-12-03T15:30:42.632Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.6187821861783946122 200
+[debug] [2020-12-03T15:30:42.633Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.6187821861783946122 {"name":"operations/cp.6187821861783946122"}
+[debug] [2020-12-03T15:30:43.134Z] [Project Creation Poller] Retrying task index 0
+[debug] [2020-12-03T15:30:43.135Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.6187821861783946122 [none]
+[debug] [2020-12-03T15:30:44.187Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.6187821861783946122 200
+[debug] [2020-12-03T15:30:44.188Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.6187821861783946122 {"name":"operations/cp.6187821861783946122","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true}}
+[debug] [2020-12-03T15:30:45.189Z] [Project Creation Poller] Retrying task index 0
+[debug] [2020-12-03T15:30:45.189Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.6187821861783946122 [none]
+[debug] [2020-12-03T15:30:46.159Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.6187821861783946122 200
+[debug] [2020-12-03T15:30:46.159Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.6187821861783946122 {"name":"operations/cp.6187821861783946122","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true,"ready":true},"done":true,"response":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.Project","projectNumber":"112681983903","projectId":"asdfghjkl5","lifecycleState":"ACTIVE","name":"asdfghjkl5","createTime":"2020-12-03T15:30:40.927Z","parent":{"type":"organization","id":"818489161241"}}}
+[debug] [2020-12-03T15:30:46.161Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-12-03T15:30:46.162Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-12-03T15:30:46.405Z] <<< HTTP RESPONSE 200 {"date":"Thu, 03 Dec 2020 15:30:46 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-12-03T15:30:46.408Z] >>> HTTP REQUEST POST https://firebase.googleapis.com/v1beta1/projects/asdfghjkl5:addFirebase  
+ 
+[debug] [2020-12-03T15:30:49.426Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 03 Dec 2020 15:30:49 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-12-03T15:30:49.427Z] > refreshing access token with scopes: []
+[debug] [2020-12-03T15:30:49.428Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-12-03T15:30:49.686Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","date":"Thu, 03 Dec 2020 15:30:49 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-12-03T15:30:49.696Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/YzQ3NTllNjAtY2Y3Yi00MTk0LWE0MjEtMmMyYTlmMzRmZTdi [none]
+[debug] [2020-12-03T15:30:50.532Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/YzQ3NTllNjAtY2Y3Yi00MTk0LWE0MjEtMmMyYTlmMzRmZTdi 200
+[debug] [2020-12-03T15:30:50.532Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/YzQ3NTllNjAtY2Y3Yi00MTk0LWE0MjEtMmMyYTlmMzRmZTdi {"name":"operations/workflows/YzQ3NTllNjAtY2Y3Yi00MTk0LWE0MjEtMmMyYTlmMzRmZTdi"}
+[debug] [2020-12-03T15:30:51.034Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2020-12-03T15:30:51.034Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/YzQ3NTllNjAtY2Y3Yi00MTk0LWE0MjEtMmMyYTlmMzRmZTdi [none]

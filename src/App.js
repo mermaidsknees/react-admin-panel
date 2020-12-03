@@ -3,13 +3,17 @@ import UserList from './components/UserList';
 // Importam formularul.
 import UserAddForm from './components/UserAddForm';
 import './App.css';
+import PostList from './components/PostList';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       background: 'white',
-      users: []
+      color: 'black',
+      users: [],
+      showUsers: false,
+      showPosts: false
     };
 
     // In cazul in care nu folosim arrow functions la declararea functiilor pasate catre alte componente,
@@ -26,14 +30,16 @@ class App extends React.Component {
         // Pentru fiecare user ramas, ii setam valoarea false pentru cheia isGoldClient
         data.forEach(user => {
           user.isGoldClient = false;
+          user.salary = '';
+          user.imgPath = 'https://www.quseapp.com/assets/img/dummy.jpg';
         });
         // Vectorul users din state este populat dupa ce ne vin datele de la API.
-        this.setState({users: data});
+        this.setState({ users: data });
       })
   }
 
   changeColor(event) {
-    this.setState({background: event.target.value});
+    this.setState({ background: event.target.value });
     // Observam ca atunci can schimbam background-ul, state-ul afisat este cel precedent, nu cel nou..
     // De ce? setState e asincron, deci nu face modificarea imediat!!
     // Daca vreti sa vedeti cum se modifica state-ul dati console.log-ul in metoda render, pentru ca render
@@ -42,6 +48,17 @@ class App extends React.Component {
     // Putem sa ii pasam lui setState un callback ca parametru, dupa pasarea obiectului, pentru a vedea ce se intampla
     // DUPA actualizarea state-ului! (DECOMENTATI codul de mai jos si comentati setState-ul de mai sus pt a vedea)
     // this.setState({background: event.target.value}, () => {console.log(this.state.background)});
+  }
+
+  changeTextColor(event) {
+    this.setState({ color: event.target.value })
+  }
+
+  deleteUser(event,id){
+    event.persist()
+    event.preventDefault()
+    // console.log(event.target.value)
+    console.log(id.id)
   }
 
   // functia getMaxId calculeaza Id-ul maxim pentru un vector de useri
@@ -61,7 +78,7 @@ class App extends React.Component {
   // ATENTIE! Metoda submitAddForm este apelata din componenta userAddForm. Respectivei componente trebuie sa ii
   // pasam functia ca props. Nu uitati ca la declansarea unui event, pe langa parametri primiti de functia asociata
   // eventului respectiv, primul parametru primit este chiar evenimentul!
-  submitAddForm(event, name, email, isGoldClient) {
+  submitAddForm(event, name, email, isGoldClient, salary, imgPath) {
     // ATENTIE! Nu uitati de event.preventDefault, altfel la submiterea formularului se va reincarca pagina!
     event.preventDefault();
     // Trebuie sa adaugam un nou obiect in vectorul users din state. Deci trebuie sa actualizam partial campul
@@ -80,13 +97,27 @@ class App extends React.Component {
             id: this.getMaxId(prevState.users) + 1,
             name,
             email,
-            isGoldClient
+            isGoldClient,
+            salary,
+            imgPath
           }
         ]
       }
     });
   }
 
+
+  showUsers() {
+    this.setState(prevState => ({
+      showUsers: !prevState.showUsers
+    }));
+  }
+
+  showPosts() {
+    this.setState(prevState => ({
+      showPosts: !prevState.showPosts
+    }));
+  }
   // ATENTIE! Metoda asta nu va merge! De ce? Din cauza ca atunci cand va fi apelata din userAddForm, THIS
   // nu va fi App! Din nou, topicul asta e mai complex, vizitati teoria!
   WRONG_submitAddForm(event, name, email, isGoldClient) {
@@ -142,8 +173,8 @@ class App extends React.Component {
   }
 
   render() {
-    return(
-      <div className="app" style={{background: this.state.background}}>
+    return (
+      <div className="app" style={{ background: this.state.background, color: this.state.color }}>
         <h1>Admin panel - Proiectul 1</h1>
         {/* De ce am inclus componenta UserAddForm in App.js? UserAddForm va modifica state-ul lui App! */}
         {/* Trebuie sa pasam DEFINITIA functiei submitAddForm ca prop catre UserAddForm. Ulterior, in UserAddForm,
@@ -151,7 +182,18 @@ class App extends React.Component {
         this.props.submitAddForm, numele din this.props trebuie sa fie acelasi cu numele atributului pasat aici. */}
         {/* De asemenea, nu uitați că la pasarea funcției trebuie să folosim arrow functions pentru ca this să
         refere în continuare la App.js!!! Iar dacă folosim arrow functions, trebuie să pasăm și parametri corespunzători! */}
-        <UserAddForm submitAddForm={(event, name, email, isGoldClient) => this.submitAddForm(event, name, email, isGoldClient)}/>
+        <UserAddForm submitAddForm={(event, name, email, isGoldClient, salary, imgPath) => this.submitAddForm(event, name, email, isGoldClient, salary, imgPath)} />
+
+
+        <button onClick={() => this.showUsers()}> Show Users</button>
+        <button onClick={() => this.showPosts()}> Show Posts</button>
+
+
+        {
+          this.state.showPosts
+            ? <PostList />
+            : null
+        }
 
         {/* Decomentati linia de mai jos si comentati UserAddForm-ul de mai sus pentru a testa functia
         WRONG_submitAddForm. */}
@@ -166,9 +208,14 @@ class App extends React.Component {
         {/* <UserAddForm submitAddForm={this.NOT_RECOMMENDED_submitAddForm}/> */}
 
         {/* Randam componenta UserList, careia ii trimitem ca proprietati userii din state. */}
-        <UserList users={this.state.users}/>
+        {
+          this.state.showUsers
+            ? <UserList users={this.state.users}   deleteUser={(event,id) => this.deleteUser(event,id)} />
+            : null
+        }
 
-        <input type="color" onChange={(event) => this.changeColor(event)}/>
+        <input type="color" onChange={(event) => this.changeColor(event)} />
+        <input type="color" onChange={(event) => this.changeTextColor(event)} />
       </div>
     );
   }
