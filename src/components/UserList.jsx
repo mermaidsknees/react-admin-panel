@@ -4,11 +4,12 @@ import UserItem from './UserItem';
 // Observatie: Componenta UserList a redevenit o componenta declarata cu function.
 function UserList(props) {
     const { users } = props;
-    const {deleteUser} = props;
+    const {deleteUser} = props; //functions
+
 
     return (
-        <div>
-            <h2>Lista utilizatorilor:</h2>
+        <div className='user-container'>
+            {/* <h2>Lista utilizatorilor:</h2> */}
             { users.map((user, index) => {
                 return <UserItem
                     // adaugam prop-ul id componentei UserItem
@@ -18,7 +19,7 @@ function UserList(props) {
                     isGoldClient={user.isGoldClient}
                     salary={user.salary}
                     imgPath={user.imgPath}
-                    deleteUser={(id) => deleteUser(id)}
+                    deleteUser={(id) => deleteUser(user.id)}
                     key={index}
                 />
             })}

@@ -1,6 +1,7 @@
 import React from 'react'
 import PostItem from './PostItem'
 
+
 class PostList extends React.Component{ 
     constructor(){
         super()
@@ -22,7 +23,7 @@ class PostList extends React.Component{
     render(){
         return(
             <div>
-                <h1>Post List:</h1>
+                {/* <h1>Post List:</h1> */}
                 {
                     this.state.posts.map((post,index) => {
                         return(

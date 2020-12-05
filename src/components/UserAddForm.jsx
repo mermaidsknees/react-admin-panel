@@ -14,13 +14,16 @@ class UserAddForm extends React.Component {
             email: '',
             isGoldClient: false,
             salary: '',
-            imgPath: ''
+            imgPath: '',
+            // emailError: this.props.emailError
         };
     }
+
 
     // NU UITATI ca metodele apelate la declansarea unui event primesc automat ca parametru event-ul respectiv.
     updateName(event) {
         // Practic, in campul din state corespunzator se stocheaza valoarea introdusa de utilizator.
+
         this.setState({ name: event.target.value });
     }
 
@@ -52,60 +55,70 @@ class UserAddForm extends React.Component {
         const { name, email, isGoldClient, salary, imgPath } = this.state;
         const { submitAddForm } = this.props;
 
+
         return (
             <form
                 className="user-add-form"
-                // Ce se intampla la submiterea datelor din formular? Trebuie adaugat un nou user in lista
-                // de useri afisata. Unde este instantiata(folosita) componenta care afiseaza userii? In App.js!
-                // Deci trebuie ca UserAddForm sa ii trimita datele lui App, pentru ca App sa isi actualizeze state-ul,
-                // care este ulterior pasat catre componenta UserListItem.
-                // Cum comunica componentele intre ele? De sus in jos. De la parinte la copil. Adica App.js
-                // va trimite o functie catre UserAddForm, iar cand functia va fi executata din UserAddForm, va modifca
-                // state-ul din App.js! Cum? this e cheia! (SFAT: consultati teoria la partea asta)
-                // ALSO: functia submitAddForm va fi apelata doar la submit! (Din nou, teoria e importanta) Si
-                // pentru a folosi evenimentul de submit, trebuie pasat ca parametru!
                 onSubmit={(event) => submitAddForm(event, name, email, isGoldClient, salary, imgPath)}
             >
                 <h2>Adauga utilizatori:</h2>
                 {/* ATENTIE! In JSX, for este pentru structuri repetitive. Pentru for din HTML
                 se foloseste htmlFor! */}
-                <label htmlFor="name">Nume:</label>
+                {/* <label htmlFor="name">Nume:</label> */}
+
                 <input
                     type="text"
                     name="name"
+                    placeholder="Nume:"
                     // Cand utilizatorul va tasta ceva nou, se va declansa eventul onChange.
                     // La declansare, se va executa metoda updateName.
                     onChange={(event) => this.updateName(event)}
                 />
-                <label htmlFor="email">Email:</label>
+                {this.props.nameError
+                    ? <div className="error" style={{ color: 'red', fontSize: '15px'}}>{this.props.nameError}</div>
+                    : null}
                 <input
                     type="text"
                     name="email"
+                    placeholder="Email:"
+
                     onChange={(event) => this.updateEmail(event)}
                 />
-                <label htmlFor="is-gold-client">Client GOLD</label>
-                <input
-                    type="checkbox"
-                    name="is-gold-client"
-                    value="true"
-                    onChange={(event) => this.updateIsGoldClient(event)}
-                />
+                {this.props.emailError
+                    ? <div className="error" style={{ color: 'red', fontSize: '15px' }}>{this.props.emailError}</div>
+                    : null}
 
-                <label htmlFor="salary">Salary:</label>
+
+                {/* <label htmlFor="salary">Salary:</label> */}
                 <input
                     type="text"
                     name="salary"
                     onChange={(event) => this.updateSalary(event)}
+                    placeholder="Salary:"
                 />
 
-                <label htmlFor="imgPath">Link to the avarat image:</label>
                 <input
                     type="text"
                     name="imgPath"
                     onChange={(event) => this.updateImgPath(event)}
+                    placeholder="Avatar Image Link:"
                 />
+                {this.props.avatarError
+                    ? <div className="error" style={{ color: 'red', fontSize: '15px' }}>{this.props.avatarError}</div>
+                    : null}
 
-                <input type="submit" value="Introdu utilizatorul" />
+                <div className="checkbox">
+                    <label htmlFor="is-gold-client">Client GOLD</label>
+                    <input
+                        type="checkbox"
+                        name="is-gold-client"
+                        className="isGold"
+                        value="true"
+                        onChange={(event) => this.updateIsGoldClient(event)}
+                    />
+                </div>
+
+                <input className='submitButton' type="submit" value="Introdu utilizatorul" />
             </form>
         )
     }

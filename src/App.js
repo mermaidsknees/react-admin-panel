@@ -9,11 +9,13 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      background: 'white',
+      background: '#f5f5f5',
       color: 'black',
       users: [],
       showUsers: false,
-      showPosts: false
+      showPosts: false,
+      nameError: '',
+      emailError: ''
     };
 
     // In cazul in care nu folosim arrow functions la declararea functiilor pasate catre alte componente,
@@ -54,11 +56,14 @@ class App extends React.Component {
     this.setState({ color: event.target.value })
   }
 
-  deleteUser(event,id){
-    event.persist()
-    event.preventDefault()
+  deleteUser(id) {
+    // event.persist()
+    // event.preventDefault()
     // console.log(event.target.value)
-    console.log(id.id)
+    const array = [...this.state.users]
+    array.splice((id - 1), 1)
+
+    this.setState({ users: array })
   }
 
   // functia getMaxId calculeaza Id-ul maxim pentru un vector de useri
@@ -75,35 +80,74 @@ class App extends React.Component {
     return maxId;
   }
 
+  validate = (name, email, imgPath) => {
+    console.log()
+    let nameError = '';
+    let emailError = '';
+    let avatarError = '';
+    if (name === '') {
+      nameError = 'Please tell us your name'
+      this.setState({ nameError })
+      return false;
+    } else {
+      nameError = ''
+      this.setState({ nameError })
+    }
+    if (!email.includes('@')) {
+      emailError = 'This is not a valid email'
+      this.setState({ emailError })
+      return false;
+    } else {
+      emailError = ''
+      this.setState({ emailError })
+
+    }
+    if ( !imgPath.match(/\.(jpeg|jpg|gif|png)$/)){
+      avatarError = 'Please upload an image'
+      this.setState({ avatarError })
+      return false;
+    } else {
+      avatarError = ''
+      this.setState({ avatarError })
+    }
+
+    return true;
+  }
+
+
   // ATENTIE! Metoda submitAddForm este apelata din componenta userAddForm. Respectivei componente trebuie sa ii
   // pasam functia ca props. Nu uitati ca la declansarea unui event, pe langa parametri primiti de functia asociata
   // eventului respectiv, primul parametru primit este chiar evenimentul!
   submitAddForm(event, name, email, isGoldClient, salary, imgPath) {
     // ATENTIE! Nu uitati de event.preventDefault, altfel la submiterea formularului se va reincarca pagina!
     event.preventDefault();
+
+    const isValid = this.validate(name, email, imgPath)
     // Trebuie sa adaugam un nou obiect in vectorul users din state. Deci trebuie sa actualizam partial campul
     // users din state => setState nu va mai primi ca parametru un obiect, ci o functie! (Check teorie)
     // Cand setState primeste ca parametru o functie, functia respectiva primeste ca parametru state-ul de dinaintea
     // aplicarii setState-ului curent.
-    this.setState(prevState => {
-      // Functia trebuie sa returneze un obiect care are ca cheie campul din state care va fi modificat.
-      return {
-        // ATENTIE! Facemn Array destructuring si apoi compunem un nou array care contine userii din state-ul anterior,
-        // la care adaugam un nou user cu atributele venite din formular. Astfel, actualizam campul users din state.
-        users: [
-          ...prevState.users,
-          {
-            // Pentru id luam valoarea maxima din state-ul precedent si il incrementam cu 1.
-            id: this.getMaxId(prevState.users) + 1,
-            name,
-            email,
-            isGoldClient,
-            salary,
-            imgPath
-          }
-        ]
-      }
-    });
+    if (isValid) {
+      this.setState(prevState => {
+        // Functia trebuie sa returneze un obiect care are ca cheie campul din state care va fi modificat.
+        return {
+          // ATENTIE! Facemn Array destructuring si apoi compunem un nou array care contine userii din state-ul anterior,
+          // la care adaugam un nou user cu atributele venite din formular. Astfel, actualizam campul users din state.
+          users: [
+            ...prevState.users,
+            {
+              // Pentru id luam valoarea maxima din state-ul precedent si il incrementam cu 1.
+              id: this.getMaxId(prevState.users) + 1,
+              name,
+              email,
+              isGoldClient,
+              salary,
+              imgPath
+            }
+          ]
+        }
+      });
+    }
   }
 
 
@@ -175,19 +219,31 @@ class App extends React.Component {
   render() {
     return (
       <div className="app" style={{ background: this.state.background, color: this.state.color }}>
-        <h1>Admin panel - Proiectul 1</h1>
+        <h1>Admin panel</h1>
         {/* De ce am inclus componenta UserAddForm in App.js? UserAddForm va modifica state-ul lui App! */}
         {/* Trebuie sa pasam DEFINITIA functiei submitAddForm ca prop catre UserAddForm. Ulterior, in UserAddForm,
         submitAddForm va fi executata. ATENTIE! Cand extragem in UserAddForm functia pasata ca props cu
         this.props.submitAddForm, numele din this.props trebuie sa fie acelasi cu numele atributului pasat aici. */}
         {/* De asemenea, nu uitați că la pasarea funcției trebuie să folosim arrow functions pentru ca this să
         refere în continuare la App.js!!! Iar dacă folosim arrow functions, trebuie să pasăm și parametri corespunzători! */}
-        <UserAddForm submitAddForm={(event, name, email, isGoldClient, salary, imgPath) => this.submitAddForm(event, name, email, isGoldClient, salary, imgPath)} />
+        <UserAddForm emailError={this.state.emailError} nameError={this.state.nameError} avatarError={this.state.avatarError} submitAddForm={(event, name, email, isGoldClient, salary, imgPath) => this.submitAddForm(event, name, email, isGoldClient, salary, imgPath)} />
 
 
-        <button onClick={() => this.showUsers()}> Show Users</button>
-        <button onClick={() => this.showPosts()}> Show Posts</button>
+        <div className='settings-buttons'>
+         <div>
+         <label>Background Color:</label>
+          <input type="color" onChange={(event) => this.changeColor(event)} />
+         </div>
+          <div>
+          <label>Text Items Color:</label>
+          <input type="color" onChange={(event) => this.changeTextColor(event)} />
+          </div>
+        </div>
+       <div className="button-container">
+        <button className="styledButton" onClick={() => this.showUsers()}> Show Users</button>
+        <button className="styledButton" onClick={() => this.showPosts()}> Show Posts</button>
 
+       </div>
 
         {
           this.state.showPosts
@@ -210,12 +266,11 @@ class App extends React.Component {
         {/* Randam componenta UserList, careia ii trimitem ca proprietati userii din state. */}
         {
           this.state.showUsers
-            ? <UserList users={this.state.users}   deleteUser={(event,id) => this.deleteUser(event,id)} />
+            ? <UserList users={this.state.users} deleteUser={(id) => this.deleteUser(id)} />
             : null
         }
 
-        <input type="color" onChange={(event) => this.changeColor(event)} />
-        <input type="color" onChange={(event) => this.changeTextColor(event)} />
+
       </div>
     );
   }
