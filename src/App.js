@@ -19,7 +19,7 @@ class App extends React.Component {
     };
 
     // In cazul in care nu folosim arrow functions la declararea functiilor pasate catre alte componente,
-    // ar trebuie sa facem bind in constructor. Ce face bind? Vizitati TEORIA!
+    // ar trebuie sa facem bind in constructor.
     this.BINDED_submitAddForm = this.BINDED_submitAddForm.bind(this);
   }
 
@@ -42,10 +42,8 @@ class App extends React.Component {
 
   changeColor(event) {
     this.setState({ background: event.target.value });
-    // Observam ca atunci can schimbam background-ul, state-ul afisat este cel precedent, nu cel nou..
-    // De ce? setState e asincron, deci nu face modificarea imediat!!
-    // Daca vreti sa vedeti cum se modifica state-ul dati console.log-ul in metoda render, pentru ca render
-    // este reapelat de fiecare data cand state-ul se schimba!
+    // setState e asincron, deci nu face modificarea imediat!!
+    // render e apelat cand state-ul e schimvat
     console.log(this.state.background);
     // Putem sa ii pasam lui setState un callback ca parametru, dupa pasarea obiectului, pentru a vedea ce se intampla
     // DUPA actualizarea state-ului! (DECOMENTATI codul de mai jos si comentati setState-ul de mai sus pt a vedea)

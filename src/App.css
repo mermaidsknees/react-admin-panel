@@ -43,6 +43,8 @@
   outline:none;
   border:none;
   margin:10px;
+  min-width: 180px;
+  min-height: 35px;
   /* align-self:center; */
 
 }
@@ -66,4 +68,12 @@
 .settings-buttons label{
   font-weight: 500;
 
+}
+
+
+@media only screen and (max-width: 600px) {
+  .app .styledButton{
+      min-width: 180px;
+      min-height: 35px;
+  }
 }
