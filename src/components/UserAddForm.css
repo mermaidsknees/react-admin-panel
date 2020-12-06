@@ -92,9 +92,15 @@
     margin:0;
 } */
 
-.user-add-form ::placeholder{
+.app ::placeholder{
     color:#f1f1f1;
     font-size:1.2em;
     font-family: 'Montserrat';
 }
 
+
+.user-add-form input[type="text"]
+{
+    color:white;
+    font-family: 'Montserrat', sans-serif;
+}

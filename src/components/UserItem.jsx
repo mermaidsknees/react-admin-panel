@@ -2,7 +2,7 @@ import React from 'react';
 import './UserItem.css'
 
 function UserItem(props) {
-    const { id, name, email, salary, isGoldClient, imgPath, deleteUser} = props;
+    const { name, email, salary, isGoldClient, imgPath, deleteUser} = props;
 
     return (
             <div className='user-item'>
@@ -17,7 +17,7 @@ function UserItem(props) {
                     ? <h3>Client GOLD</h3>
                     : null
                 }
-                <button class='deleteButton' onClick={(x) => deleteUser(x)}>Delete User</button>
+                <button className='deleteButton' onClick={(x) => deleteUser(x)}>Delete User</button>
             </div>
            
         </div>

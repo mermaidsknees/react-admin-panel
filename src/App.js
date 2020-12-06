@@ -153,13 +153,15 @@ class App extends React.Component {
 
   showUsers() {
     this.setState(prevState => ({
-      showUsers: !prevState.showUsers
+      showUsers: !prevState.showUsers,
+      showPosts: false
     }));
   }
 
   showPosts() {
     this.setState(prevState => ({
-      showPosts: !prevState.showPosts
+      showPosts: !prevState.showPosts,
+      showUsers: false
     }));
   }
   // ATENTIE! Metoda asta nu va merge! De ce? Din cauza ca atunci cand va fi apelata din userAddForm, THIS
@@ -235,7 +237,7 @@ class App extends React.Component {
           <input type="color" onChange={(event) => this.changeColor(event)} />
          </div>
           <div>
-          <label>Text Items Color:</label>
+          <label>Item Text Color:</label>
           <input type="color" onChange={(event) => this.changeTextColor(event)} />
           </div>
         </div>
