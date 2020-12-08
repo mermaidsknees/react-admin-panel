@@ -1,8 +1,8 @@
-.app {
+.home {
   min-height: 100vh;
 }
 
-.app h1 {
+.home h1 {
   background-color:black;
   opacity:0.8;
   color:white !important;
@@ -13,12 +13,12 @@
   font-family: 'Montserrat';
   text-align:center;
 }
-.app .button-container{
+.home .button-container{
   display:flex;
   justify-content: center;
   margin-top:2vw;
 }
-.app .styledButton{
+.home .styledButton{
   opacity:0.6;
   background-color: black!important;
   border-radius:25px;
@@ -54,7 +54,7 @@
 
 }
 
-.app ::placeholder{
+.home ::placeholder{
     color:#f1f1f1;
     font-size:1.2em;
     font-family: 'Montserrat';
@@ -64,8 +64,18 @@
 
 }
 
+.home .link{ 
+  padding: 2vw 0vw;
+  text-align: center;
+}
+.home .link-text{
+  /* text-decoration: none; */
+  color:black;
+  font-family: 'Montserrat';
+  font-weight: 600;
+}
 @media only screen and (max-width: 600px) {
-  .app .styledButton{
+  .home .styledButton{
       min-width: 180px;
       min-height: 35px;
   }

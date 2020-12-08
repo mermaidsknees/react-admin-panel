@@ -1,0 +1,22 @@
+.about-page{
+    font-family: 'Montserrat';
+    background-color: #f5f5f5 !important;
+    height: 100vh;
+    font-size: 1.1em;
+}
+
+.about-page h1{
+    padding:4vw;
+    background-color:black;
+    opacity:0.8;
+    color:white !important;  
+    padding:10px;
+    font-size:1.6em;
+    margin-top: 0;
+    margin-bottom:3vw;
+    text-align:center;
+}
+
+.about-page .content{
+    padding: 0vw 2vw;
+}
