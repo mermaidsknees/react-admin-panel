@@ -1,13 +1,4 @@
-/* Daca vrem ca aplicatia sa ocupe intreg viewport-ul. */
 .app {
-  /* background-color: #F5F5F5; */
-  /* background-image: url("./assets/crissxcross.png")!important; */
-  /* background-repeat: repeat; */
-  /* backdrop-filter: blur(10px); */
-
-
-  /* background-position: center !important; Center the image */
-  /* background-size: cover !important; Resize the background image to cover the entire container */
   min-height: 100vh;
 }
 
@@ -20,7 +11,6 @@
   margin-top: 0;
   margin-bottom:3vw;
   font-family: 'Montserrat';
-  /* color:white; */
   text-align:center;
 }
 .app .button-container{
@@ -29,7 +19,6 @@
   margin-top:2vw;
 }
 .app .styledButton{
-  /* background-color: red; */
   opacity:0.6;
   background-color: black!important;
   border-radius:25px;
@@ -45,21 +34,16 @@
   margin:10px;
   min-width: 180px;
   min-height: 35px;
-  /* align-self:center; */
 
 }
 
 .settings-buttons{
   padding-top:2vw;
   display: flex;
-  /* justify-content: center; */
   width:400px;
   margin:0 auto;
   flex-direction: row;
-  /* flex-wrap: wrap; */
-  /* align-self: center; */
   text-align: center;
-   /* background-color: #f5f5f5; */
 }
 .settings-buttons input{
   background-color: lightgray;
@@ -70,6 +54,15 @@
 
 }
 
+.app ::placeholder{
+    color:#f1f1f1;
+    font-size:1.2em;
+    font-family: 'Montserrat';
+}
+
+.about-page{
+
+}
 
 @media only screen and (max-width: 600px) {
   .app .styledButton{
