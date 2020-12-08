@@ -74,6 +74,7 @@
   font-family: 'Montserrat';
   font-weight: 600;
 }
+
 @media only screen and (max-width: 600px) {
   .home .styledButton{
       min-width: 180px;
