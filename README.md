@@ -9,3 +9,11 @@
 - Conditional and Repetitive Rendering
 - Lifecycle Methods
 - Props, State, Passing Data between components
+
+
+### Running the project 
+
+```
+npm install
+npm start
+```
